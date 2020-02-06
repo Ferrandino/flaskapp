@@ -1,0 +1,90 @@
+<style>
+
+ .main {
+ background-color: rgba(255, 255, 255, 0.5);
+ margin-top: 100px;
+ padding-bottom: 50px;
+ }
+ .main h1 {
+ font-size: 3.5em;
+ font-family: Arial;
+ color: #2E3759;
+ }
+ .main h2 {
+ font-size: 2em;
+ font-family: Arial;
+ color: #59502e;
+ }
+ .main h3 {
+ font-size: 2em;
+ font-family: Arial;
+ color: #2E3759;
+ }
+ .main p {
+ font-size:1em;
+ font-family: Arial;
+ color: #2E3759;
+ }
+
+</style>
+
+<!--
+palette_name = palette_name, 
+palette_hex = palette_hex, 
+panel_hex = panel_hex, 
+panel_img_path = panel_img
+-->
+
+
+<title>Title</title>
+</head>
+<body>
+<div class="main">
+  <div style="text-align:center">
+  <br><br>
+  <div class="starter-template">
+
+<br><br>
+<h1>Your Gallery Wall Recommendations</h1>
+      
+      <table>
+          <tbody>
+              <tr>
+                  <img src= "{{original}}" width="200" height="200">
+              </tr>
+          </tbody>
+          <tbody>
+           {% for img in panel_img_path %}
+              <tr>
+                  <img src= "{{img}}" width="200" height="200" data-holder-rendered="true">
+              </tr>
+          {% endfor %}
+          </tbody>
+      </table>
+
+      <!-- Content -->
+      <div class="container">
+          
+          <!-- Heading -->
+          <div class="row">
+      <div class="row"><div align="center">
+           <article class="row">
+           {% for link in panel_link %}
+               <a href={{link}}>{{linktext}}</a>
+               <p></p>
+           {% endfor %}
+          </article>
+           </div></div>
+    
+    
+      <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+      <script src="../static/js/bootstrap.min.js"></script>
+
+<form action='/input', method=''>
+
+        <button type="submit">Go back</button>
+      </form>
+
+
+</div></div></div>
+</body>
