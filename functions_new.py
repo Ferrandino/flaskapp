@@ -93,7 +93,7 @@ def calc_LSH(feature_dict, size):
 def get_similar_item(file, feature_dict, lsh_variable, n_items):
     idx =list(feature_dict.keys()).index(file)
     response = lsh_variable.query(feature_dict[list(feature_dict.keys())[idx]].flatten(),
-                 num_results=n_items+1, distance_func='cosine')
+                 num_results=n_items+1, distance_func='l1norm')
     F = response[0][0][1]
     F1 = response[1-2][0][1]
     F2 = response[1-3][0][1]

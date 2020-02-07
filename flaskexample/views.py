@@ -13,8 +13,8 @@ from functions_new import *
 # import pandas as pd
 # import psycopg2
 UPLOAD_FOLDER = '/home/ubuntu/flaskapp-master/flaskexample/static/data/upload_folder/'
-UPLOAD_POST_FOLDER = '/home/ubuntu/flaskapp-master/flaskexample/static/data/upload_folder/'
-IMAGE_FOLDER ='./static/class_art/'
+UPLOAD_POST_FOLDER = 'static/data/upload_folder/'
+IMAGE_FOLDER ='static/class_art/'
 
 recom_path = '/home/ubuntu/flaskapp-master/flaskexample/static/data/art_for_app.csv'
 pd.set_option('display.max_colwidth', 1000)
@@ -98,8 +98,8 @@ def upload_file():
             
     return render_template('input.html')
 
-if __name__ == "__main__":
-	app.run(debug=True)
+#if __name__ == "__main__":
+#	app.run(debug=True)
 #def go():
 #    query = request.args.get('query', '')
 #    return render_template(
