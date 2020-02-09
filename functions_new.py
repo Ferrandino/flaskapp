@@ -79,8 +79,8 @@ def calc_LSH(feature_dict, size):
     featuresize = np.shape(feature_dict)
 
     # params
-    k = 5 # hash size
-    L = 5  # number of tables
+    k = 6 # hash size
+    L = 6  # number of tables
     d = size[0] # Dimension of Feature vector
     lsh = LSHash(hash_size=k, input_dim=d, num_hashtables=L)
 
