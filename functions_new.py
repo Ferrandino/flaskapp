@@ -32,13 +32,6 @@ mainpath = '/home/ubuntu/flaskapp-master/flaskexample'
 user_image_path = '/home/ubuntu/flaskapp-master/flaskexample/static/data/upload_folder/'
 CSV = '/home/ubuntu/flaskapp-master/flaskexample/static/data/art_for_app.csv'
 
-
-#os.getcwd()
-#modelfile = os.getcwd()+"/models/VGG_cat.smallerLR.h5"
-#clear_session()
-#model = load_model(modelfile)
-
-
 def get_model():
     global model
     model = load_model('VGG_cat.smallerLR.h5')
@@ -57,14 +50,6 @@ print("* Loading Keras model...")
 get_model()
 graph = tf.get_default_graph()
 
-#def extract_img_features(model,upload_image_path,processedimage):
-#    feature_dict = pickle.load(open(mainpath+"/models/VGG_cat_layer3.p","rb"))
-#    get_layer = K.function([model.input],[model.layers[3].output])
-#    newimgfeature = get_layer([processedimage])[0].flatten()
-#    feature_dict[upload_image_path] = newimgfeature
-#    size = np.shape(newimgfeature)
-#    return feature_dict,size
-
 def extract_img_features(model,upload_image_path,processedimage):
     feature_dict = pickle.load(open(mainpath+"/models/VGG_cat_layer3.p","rb"))
     get_layer = K.function([model.input],[model.layers[3].output])
@@ -72,7 +57,6 @@ def extract_img_features(model,upload_image_path,processedimage):
     feature_dict[upload_image_path] = newimgfeature
     size = np.shape(newimgfeature)
     return feature_dict,size
-
 
 def calc_LSH(feature_dict, size):
     featuresize = np.shape(feature_dict)
