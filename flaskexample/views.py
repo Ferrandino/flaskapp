@@ -19,7 +19,7 @@ IMAGE_FOLDER ='static/class_art/'
 recom_path = '/home/ubuntu/flaskapp-master/flaskexample/static/data/art_for_app.csv'
 pd.set_option('display.max_colwidth', 1000)
 art = pd.read_csv(recom_path, index_col = 0)
-
+#art = find_url()
 
 #app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -90,7 +90,7 @@ def upload_file():
             panel_img_path = [os.path.join(app.config['IMAGE_DIR'],x) for x in panel_img]
             print(original)
             print(panel_img_path)
-            returnval = render_template('recommendations.html', panel_img_path = panel_img_path, original = original, panel_link = panel_link, linktext = linktext, piclink = art['link'].iloc[0])
+            returnval = render_template('recommendations.html', panel_img_path1 = panel_img_path[0],panel_img_path2 = panel_img_path[1],panel_img_path3 = panel_img_path[2], original = original, panel_link1 = panel_link[0], panel_link2 = panel_link[1],panel_link3 = panel_link[2], linktext = linktext, piclink = art['link'].iloc[0])
            
         return returnval
     

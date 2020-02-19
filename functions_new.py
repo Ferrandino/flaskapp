@@ -1,11 +1,11 @@
-# basic functions & analytics
+# basic functions 
 
 import os
 import numpy as np
 import pandas as pd
 import ntpath
 
-# making predictions & extracting features with model
+#  extracting features with model
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.vgg16 import preprocess_input
 from tensorflow.keras.models import load_model
@@ -13,16 +13,15 @@ from tensorflow.keras import backend as K
 from keras.backend import clear_session
 import tensorflow as tf
 
-# calculating image similarity
-# calculating image similarity
+#  image similarity
 from lshash_2.lshash_2 import LSHash
 from tqdm import notebook
 import matplotlib.pyplot as plt
 from PIL import Image
 
-# pinging SQL
-#from sqlalchemy import create_engine
-#from sqlalchemy_utils import database_exists, create_database
+# SQL
+from sqlalchemy import create_engine
+from sqlalchemy_utils import database_exists, create_database
 import psycopg2
 
 # loading classified image features
@@ -100,29 +99,28 @@ def get_similar_item(file, feature_dict, lsh_variable, n_items):
     F3 = response[1-4][0][1]
     return F,F1,F2,F3
     
-def find_price_url(F1):
+def find_url():
 
-    dbname = 'art'
+    dbname = 'art_test'
     username = 'postgres' # change this to your username
     pw = 'postgres'
 
-    db = create_engine('postgres://%s:%s@localhost/%s'%(username,pw,dbname))
-#    print(engine.url)
+    engine = create_engine('postgres://%s:%s@localhost/%s'%(username,pw,dbname))
+    #print(engine.url)
     con = None
-    con = psycopg2.connect(database = dbname, user = username, host='localhost',  password = pw)
+    con = psycopg2.connect(database = dbname, user = username, password = pw)
 
-    listing = []
     # query:
     sql_query = """
-    SELECT link FROM art_table WHERE item=F1_base;
+    SELECT item,link
+    FROM art_table ;
     """
-    listing.append(pd.read_sql_query(sql_query,con))
+    art = pd.read_sql_query(sql_query,con)
+    art.head()
 
-    listing = pd.concat(listing)
-    #listing['listing_id'] = similar_listings[1::]
+    return art
 
-    return listing
-
+#art = find_url()
 
 def get_link(F1,F2,F3):
     pd.set_option('display.max_colwidth', 1000)
