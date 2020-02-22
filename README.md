@@ -4,7 +4,9 @@ This repo contains the flask app for Eye For Art, an art recommendation web app 
 
 ## How it works
 
-The app loads a retrained CNN model as well as a feature array for each image in the database. The user image is then run through the model and mapped onto feature space with the database images. The items closest to the image are selected as the top recommendations for your personalized gallery wall. You can then link to each item to buy. 
+The app loads a retrained VGG16 model as well as a feature array for each image in the database. The user image is then run through the model and mapped onto feature space with the database images. The items closest to the image are selected as the top recommendations for your personalized gallery wall. You can then link to each item to buy. 
+
+The app is run via flaskapp/laskexample/views.py. The functions for selecting pieces of art are located in functions_new.py. Saved models and feature arrays are located in flaskapp/flaskexample.models. The database of art images are located in flaskapp/flaskexample/static/class_art. Templates for the webpage are located in flaskapp/flaskexample/templates. The input.html allows the user to upload the image. The recommendations.html returns the recommended images and links. 
 
 ## Where did the data come from
 
