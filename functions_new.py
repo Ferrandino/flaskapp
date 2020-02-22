@@ -32,6 +32,7 @@ mainpath = '/home/ubuntu/flaskapp-master/flaskexample'
 user_image_path = '/home/ubuntu/flaskapp-master/flaskexample/static/data/upload_folder/'
 CSV = '/home/ubuntu/flaskapp-master/flaskexample/static/data/art_for_app.csv'
 
+#load retrained VGG16 model
 def get_model():
     global model
     model = load_model('VGG_cat.smallerLR.h5')
@@ -50,6 +51,7 @@ print("* Loading Keras model...")
 get_model()
 graph = tf.get_default_graph()
 
+#pull out feature arrays
 def extract_img_features(model,upload_image_path,processedimage):
     feature_dict = pickle.load(open(mainpath+"/models/VGG_cat_layer3.p","rb"))
     get_layer = K.function([model.input],[model.layers[3].output])
@@ -58,6 +60,7 @@ def extract_img_features(model,upload_image_path,processedimage):
     size = np.shape(newimgfeature)
     return feature_dict,size
 
+#generate hash tables
 def calc_LSH(feature_dict, size):
     featuresize = np.shape(feature_dict)
 
@@ -73,6 +76,7 @@ def calc_LSH(feature_dict, size):
     
     return lsh
 
+#select near duplicates 
 def get_similar_item(file, feature_dict, lsh_variable, n_items):
     idx =list(feature_dict.keys()).index(file)
     response = lsh_variable.query(feature_dict[list(feature_dict.keys())[idx]].flatten(),
@@ -82,7 +86,8 @@ def get_similar_item(file, feature_dict, lsh_variable, n_items):
     F2 = response[1-3][0][1]
     F3 = response[1-4][0][1]
     return F,F1,F2,F3
-    
+
+#SQL query
 def find_url():
 
     dbname = 'art_test'
